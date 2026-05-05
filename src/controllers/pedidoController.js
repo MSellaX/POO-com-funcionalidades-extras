@@ -135,14 +135,6 @@ const pedidoController = {
             const { id } = req.params;
             const { produtoId, quantidade } = req.body;
 
-            if (!id || Number(id) <= 0) {
-                return res.status(400).json({ message: "Pedido inválido" });
-            }
-
-            if (!produtoId || !quantidade || quantidade <= 0) {
-                return res.status(400).json({ message: "Dados do item inválidos" });
-            }
-
             const item = ItensPedido.criar({ produtoId, quantidade });
 
             const result = await pedidoRepository.adicionarItem(id, item);
